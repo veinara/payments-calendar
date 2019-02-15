@@ -55,7 +55,7 @@ class Auth extends CI_Controller
 				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
 			}
 
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'index', $this->data);
+			$this->_render_page('dashboard', 'auth' . DIRECTORY_SEPARATOR . 'index', $this->data);
 		}
 	}
 
@@ -81,7 +81,7 @@ class Auth extends CI_Controller
 				//if the login is successful
 				//redirect them back to the home page
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect('/', 'refresh');
+				redirect('/inv', 'refresh');
 			}
 			else
 			{
@@ -110,7 +110,7 @@ class Auth extends CI_Controller
 				'type' => 'password',
 			];
 
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'login', $this->data);
+			$this->_render_page('auth', 'auth' . DIRECTORY_SEPARATOR . 'login', $this->data);
 		}
 	}
 
@@ -177,7 +177,7 @@ class Auth extends CI_Controller
 			];
 
 			// render
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'change_password', $this->data);
+			$this->_render_page('auth', 'auth' . DIRECTORY_SEPARATOR . 'change_password', $this->data);
 		}
 		else
 		{
@@ -237,7 +237,7 @@ class Auth extends CI_Controller
 
 			// set any errors and display the form
 			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'forgot_password', $this->data);
+			$this->_render_page('auth', 'auth' . DIRECTORY_SEPARATOR . 'forgot_password', $this->data);
 		}
 		else
 		{
@@ -330,7 +330,7 @@ class Auth extends CI_Controller
 				$this->data['code'] = $code;
 
 				// render
-				$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'reset_password', $this->data);
+				$this->_render_page('auth', 'auth' . DIRECTORY_SEPARATOR . 'reset_password', $this->data);
 			}
 			else
 			{
@@ -431,7 +431,7 @@ class Auth extends CI_Controller
 			$this->data['csrf'] = $this->_get_csrf_nonce();
 			$this->data['user'] = $this->ion_auth->user($id)->row();
 
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'deactivate_user', $this->data);
+			$this->_render_page('dashboard', 'auth' . DIRECTORY_SEPARATOR . 'deactivate_user', $this->data);
 		}
 		else
 		{
@@ -564,7 +564,7 @@ class Auth extends CI_Controller
 				'value' => $this->form_validation->set_value('password_confirm'),
 			];
 
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'create_user', $this->data);
+			$this->_render_page('dashboard', 'auth' . DIRECTORY_SEPARATOR . 'create_user', $this->data);
 		}
 	}
 	/**
@@ -719,7 +719,7 @@ class Auth extends CI_Controller
 			'type' => 'password'
 		];
 
-		$this->_render_page('auth/edit_user', $this->data);
+		$this->_render_page('dashboard', 'auth/edit_user', $this->data);
 	}
 
 	/**
@@ -767,7 +767,7 @@ class Auth extends CI_Controller
 				'value' => $this->form_validation->set_value('description'),
 			];
 
-			$this->_render_page('auth/create_group', $this->data);
+			$this->_render_page('dashboard', 'auth/create_group', $this->data);
 		}
 	}
 
@@ -836,7 +836,7 @@ class Auth extends CI_Controller
 			'value' => $this->form_validation->set_value('group_description', $group->description),
 		];
 
-		$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'edit_group', $this->data);
+		$this->_render_page('dashboard', 'auth' . DIRECTORY_SEPARATOR . 'edit_group', $this->data);
 	}
 
 	/**
@@ -866,24 +866,29 @@ class Auth extends CI_Controller
 	}
 
 	/**
+	 * @param string     $layout
 	 * @param string     $view
 	 * @param array|null $data
 	 * @param bool       $returnhtml
 	 *
 	 * @return mixed
 	 */
-	public function _render_page($view, $data = NULL, $returnhtml = FALSE)//I think this makes more sense
+	public function _render_page($layout, $view, $data = NULL, $returnhtml = FALSE)//I think this makes more sense
 	{
-
 		$viewdata = (empty($data)) ? $this->data : $data;
+		$this->template->set('user', $this->ion_auth->user()->row());
+		$this->template->set('app_name', $this->config->item('app_name'));
+		$this->template->set('app_version', $this->config->item('app_version'));
 
-		$view_html = $this->load->view($view, $viewdata, $returnhtml);
+		header("Access-Control-Allow-Origin: *");
+		$this->template->load($layout. '_layout', 'contents' , $view, $viewdata);
+		//$view_html = $this->load->view($view, $viewdata, $returnhtml);
 
 		// This will return html on 3rd argument being true
-		if ($returnhtml)
-		{
-			return $view_html;
-		}
+		//if ($returnhtml)
+		//{
+		//	return $view_html;
+		//}
 	}
 
 }
