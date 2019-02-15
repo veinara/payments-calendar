@@ -3,7 +3,7 @@ class Template {
 	//ci instance
 	private $CI;
 	//template Data
-	var $template_data = array();
+	public $template_data = array();
 
 	public function __construct()
 	{
@@ -19,7 +19,9 @@ class Template {
 	{
 		$this->set($name , $this->CI->load->view($view, $view_data, TRUE));
 
-		$this->CI->load->view('layouts/'.$template, $this->template_data);
+		$tpl = $this->CI->load->view('layouts/'.$template, $this->template_data, $return);
+
+		if ($return) return $tpl;
 	}
 
 }
