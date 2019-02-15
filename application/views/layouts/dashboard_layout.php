@@ -19,7 +19,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<link rel="icon" href="<?php echo base_url();?>/favicon.ico" type="image/x-icon" />
 		<link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url();?>/favicon.ico" />
 		<!-- Generated: 2018-04-16 09:29:05 +0200 -->
-		<title><?php echo $app_name .' '. $app_version;?></title>
+		<title>
+			<?php echo $app_name .' '. $app_version;?>
+		</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
 		<script src="<?php echo base_url();?>/assets/js/require.min.js"></script>
@@ -41,11 +43,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="header py-4">
 					<div class="container">
 						<div class="d-flex">
-							<a class="header-brand" href="<?php echo base_url();?>"><?php echo $app_name .' '. $app_version;?></a>
+							<a class="header-brand" href="<?php echo base_url();?>">
+								<?php echo $app_name .' '. $app_version;?>
+							</a>
 
 
 							<div class="d-flex order-lg-2 ml-auto">
-							<!--	<div class="dropdown d-none d-md-flex">
+								<!--	<div class="dropdown d-none d-md-flex">
 									<a class="nav-link icon" data-toggle="dropdown">
                     <i class="fe fe-bell"></i>
                     <span class="nav-unread"></span>
@@ -79,7 +83,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							-->
 								<div class="dropdown">
 									<a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-                    <span class="avatar avatar-blue"></span>
+                    <span class="avatar avatar-blue"><?php echo substr($user->first_name, 0, 1); ?></span>
                     <span class="ml-2 d-none d-lg-block">
                       <span class="text-default"><?php echo $user->first_name .' '. $user->last_name ?></span>
                       <small class="text-muted d-block mt-1"><?php echo $user->company; ?></small>
@@ -109,7 +113,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</li>-->
 
 									<li class="nav-item dropdown">
-										<a href="<?php echo site_url('inv');?>" class="nav-link  <?php if($this->uri->segment(1)=="inv"){echo "active";}?>" data-toggle="dropdown"><i class="fe fe-calendar"></i> Payments calendar</a>
+										<a href="<?php echo site_url('inv');?>" class="nav-link  <?php if($this->uri->segment(1)==" inv "){echo "active ";}?>" data-toggle="dropdown"><i class="fe fe-calendar"></i> Payments calendar</a>
 										<div class="dropdown-menu dropdown-menu-arrow">
 											<a href="<?php echo site_url('inv');?>" class="dropdown-item ">Calendar</a>
 											<?php if ($this->ion_auth->in_group(array('admin', 'accountants'))) : ?>
@@ -119,7 +123,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</li>
 									<?php if ($this->ion_auth->is_admin()) : ?>
 									<li class="nav-item dropdown">
-										<a href="javascript:void(0)" class="nav-link <?php if($this->uri->segment(1)=="auth"){echo "active";}?>" data-toggle="dropdown"><i class="fe fe-file"></i> Users</a>
+										<a href="javascript:void(0)" class="nav-link <?php if($this->uri->segment(1)==" auth "){echo "active ";}?>" data-toggle="dropdown"><i class="fe fe-file"></i> Users</a>
 										<div class="dropdown-menu dropdown-menu-arrow">
 											<a href="<?php echo base_url();?>auth" class="dropdown-item ">Users list</a>
 											<a href="<?php echo base_url();?>auth/create_user" class="dropdown-item ">Create user</a>
@@ -134,40 +138,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 
 
-
-
 				<div class="my-3 my-md-5">
 					<div class="container">
-
 						<?php echo $contents;?>
+					</div>
+				</div>
 
-					  </div>
-      </div>
-			<!--
-      <footer class="footer">
-        <div class="container">
-          <div class="row align-items-center flex-row-reverse">
-            <div class="col-auto ml-lg-auto">
-              <div class="row align-items-center">
-                <div class="col-auto">
-                  <ul class="list-inline list-inline-dots mb-0">
-                    <li class="list-inline-item"><a href="./docs/index.html">Documentation</a></li>
-                    <li class="list-inline-item"><a href="./faq.html">FAQ</a></li>
-                  </ul>
-                </div>
-                <div class="col-auto">
-                  <a href="https://github.com/tabler/tabler" class="btn btn-outline-primary btn-sm">Source code</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
 
-            </div>
-          </div>
-        </div>
-      </footer>
-			-->
-
-    </div>
-  </body>
+			</div>
+	</body>
 </html>
