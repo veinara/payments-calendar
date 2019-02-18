@@ -188,6 +188,12 @@
 <?php endif; ?>
 
 <style>
+	.table th, .text-wrap table th, .table td, .text-wrap table td {
+		padding: 2px;
+	}
+	.custom-control {
+		min-height: 1rem;
+	}
 	.table-inv-info tr {
 		background: #fff;
 	}
