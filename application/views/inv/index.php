@@ -175,7 +175,7 @@
 
 				<div class="form-group">
 					<label class="form-label" for="paid_date"><?php echo lang('create_inv_paid_date_label'); ?></label>
-					<input name="paid_date" type="text" value="<?php echo date(config_item('inv_date_format'), time());?>" data-mask="00.00.00" data-mask-clearifnotmatch="true" class="form-control" placeholder="dd.mm.yy" />
+					<input name="paid_date" type="text" value="<?php echo date(config_item('inv_date_format'), time());?>" class="form-control" placeholder="dd.mm.yy" />
 				</div>
 
 			</div>
