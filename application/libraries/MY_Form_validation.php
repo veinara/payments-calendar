@@ -10,7 +10,7 @@ class MY_Form_validation extends CI_Form_validation {
 	public function valid_date($date)
 	{
 		$d = DateTime::createFromFormat('d.m.y', $date);
-		return $d && $d->format('d.m.y') === $date;
+		return (bool)$d;
 	}
 }
 ?>
