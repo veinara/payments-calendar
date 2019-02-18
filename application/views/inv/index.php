@@ -73,10 +73,12 @@
 						<?php
 							foreach ($period as $dt):
 								$curr_date = $dt->format('d.m.y'); //mysql date format
-								$rowspan = (!isset($invoices[$curr_date]) ? 1 : count($invoices[$curr_date])+1);
+								$date_has_invoices = isset($invoices[$curr_date]);
 								$is_today = date('d.m.y', time()) == $dt->format('d.m.y');
 
 							?>
+							<?php if (!$date_has_invoices) continue; ?>
+
 							<tr class="<?php if ($is_today) echo 'today';?>">
 								<th class="text-center">
 									<?php if ($is_today) echo 'today';?>
@@ -88,7 +90,6 @@
 								</th>
 
 
-								<?php if($rowspan == 1) continue; ?>
 								<td style="padding: 0">
 									<?php foreach ($invoices[$curr_date] as $key => $inv):
 
