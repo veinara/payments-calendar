@@ -83,10 +83,12 @@
 								<th class="text-center">
 									<?php if ($is_today) echo 'today';?>
 									<?php //echo $dt->format('l'); ?>
-									<div style="font-size: <?php echo ($is_today ? '3em; color: #000' : '2em');?>; line-height: 1em;">
+									<div style="font-size: <?php echo ($is_today ? '1.8em; color: #000' : '1.7em');?>; line-height: 1em;">
 										<?php echo $dt->format('d'); ?>
 									</div>
-									<?php echo $dt->format('m.Y'); ?>
+									<div style="font-size: 0.9em">
+										<?php echo $dt->format('m.Y'); ?>
+									</div>
 								</th>
 
 
