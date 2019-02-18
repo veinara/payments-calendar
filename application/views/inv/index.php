@@ -135,7 +135,7 @@
 
 											<?php if ($this->ion_auth->in_group(array('admin', 'accountants'))):?>
 											<td style="width: 10%">
-												<?php echo anchor("inv/paid/".$inv->id, lang('set_paid_date'), ($is_paid ? 'style="visibility: hidden"' : '') .'class="btn btn-secondary btn-sm inv-btn-pay'. (!$is_pending ? ' disabled' : '') .'"');
+												<?php echo anchor("inv/paid/".$inv->id, lang('set_paid_date'), ($is_paid ? 'style="visibility: hidden"' : '') .'class="btn btn-secondary btn-sm inv-btn-pay"');
 										endif; ?>
 											</td>
 
