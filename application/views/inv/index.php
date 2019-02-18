@@ -74,7 +74,7 @@
 							foreach ($period as $dt):
 								$curr_date = $dt->format('d.m.y'); //mysql date format
 								$rowspan = (!isset($invoices[$curr_date]) ? 1 : count($invoices[$curr_date])+1);
-								$is_today = date('d', time()) == $dt->format('d');
+								$is_today = date('d.m.y', time()) == $dt->format('d.m.y');
 
 							?>
 							<tr class="<?php if ($is_today) echo 'today';?>">
