@@ -185,7 +185,7 @@ class Inv extends CI_Controller
 		$this->form_validation->set_rules('supplier_id', $this->lang->line('inv_validation_supplier_label'), 'integer');
 		$this->form_validation->set_rules('inv_number', $this->lang->line('inv_validation_inv_number_label'), 'trim|required|numeric');
 		$this->form_validation->set_rules('due_date', $this->lang->line('inv_validation_due_date_label'), 'required|valid_date');
-		$this->form_validation->set_rules('amount', $this->lang->line('inv_validation_amount_label'), 'trim|required|regex_match[/^\d+\.\d\d$/]');
+		$this->form_validation->set_rules('amount', $this->lang->line('inv_validation_amount_label'), 'trim|required|numeric');
 		$this->form_validation->set_rules('currency_id', $this->lang->line('inv_validation_currency_label'), 'integer');
 
 

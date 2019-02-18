@@ -33,5 +33,11 @@ $lang['inv_success_set_paid'] = 'The invoice\'s date of payment has been set suc
 
 $lang['inv_validation_paid_date_label'] = 'The date of payment';
 $lang['inv_validation_supplier_name_empty'] = 'The supplier name can not be empty';
+$lang['inv_validation_supplier_name_label'] = 'supplier name';
+$lang['inv_validation_supplier_label'] 		= 'supplier';
+$lang['inv_validation_inv_number_label'] = 'invoice number';
+$lang['inv_validation_due_date_label'] = 'due date';
+$lang['inv_validation_amount_label'] = 'amount';
+$lang['inv_validation_currency_label'] = 'currency';
 
 $lang[''] = '';

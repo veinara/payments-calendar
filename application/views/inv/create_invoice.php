@@ -49,7 +49,7 @@
 			<div class="col-sm-6 col-md-3">
 				<div class="form-group">
 					<label class="form-label" for="due_date"><?php echo lang('create_inv_due_date_label'); ?><span class="form-required">*</span></label>
-					<?php echo form_input($due_date, '', ' data-mask="00.00.00" data-mask-clearifnotmatch="true" class="form-control" placeholder="dd.mm.yy"');?>
+					<?php echo form_input($due_date, '', 'class="form-control" placeholder="dd.mm.yy"');?>
 				</div>
 			</div>
 
@@ -58,7 +58,7 @@
 			<div class="col-md-2">
 				<div class="form-group">
 					<label class="form-label" for="amount"><?php echo lang('create_inv_amount_label'); ?><span class="form-required">*</span></label>
-					<?php echo form_input($amount, '', '   data-mask="099999999999.00" class="form-control" placeholder="0000000.00"');?>
+					<?php echo form_input($amount, '', '   class="form-control" placeholder="00.00"');?>
 				</div>
 			</div>
 
@@ -80,6 +80,3 @@
 	</div>
 	<?php echo form_close();?>
 </div>
-<script>
-	require(['input-mask']);
-</script>
