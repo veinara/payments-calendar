@@ -102,8 +102,7 @@ class Inv extends CI_Controller
 		}
 
 		if (!$this->ion_auth->in_group(array('admin', 'approvers'))) {
-			show_error(lang('inv_error_not_allowed'), 401);
-			exit;
+			exit(lang('inv_error_not_allowed'));
 		}
 
 		// set pending status and record activity on success
@@ -128,8 +127,7 @@ class Inv extends CI_Controller
 		}
 
 		if (!$this->ion_auth->in_group(array('admin', 'accountants'))) {
-			show_error(lang('inv_error_not_allowed'), 401);
-			exit;
+			exit(lang('inv_error_not_allowed'));
 		}
 
 		$this->form_validation->set_rules('paid_date', $this->lang->line('inv_validation_paid_date_label'), 'required|valid_date');
@@ -175,7 +173,8 @@ class Inv extends CI_Controller
 	public function create_inv()
 	{
 		if (!$this->ion_auth->in_group(array('admin', 'accountants'))) {
-			exit('You are not allowed to do that.');
+			show_error(lang('inv_error_not_allowed'), 401);
+			exit;
 		}
 
 		$this->data['suppliers'] = $this->inv_model->get_suppliers();
@@ -260,7 +259,7 @@ class Inv extends CI_Controller
 				'type' => 'text',
 				'value' => $this->form_validation->set_value('amount'),
 			];
-			$this->data['currency_id'] = isset($currency_id) ? $currency_id : FALSE;
+			$this->data['currency_id'] = isset($currency_id) ? $currency_id : config_item('inv_default_currency_id');
 
 		$this->_render_page('dashboard', 'inv' .DIRECTORY_SEPARATOR. 'create_invoice', $this->data);
 	}
